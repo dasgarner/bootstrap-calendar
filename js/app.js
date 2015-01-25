@@ -8,6 +8,7 @@
 		tmpl_path: 'tmpls/',
 		tmpl_cache: false,
 		day: '2013-03-12',
+		type: 'Jalali',
 		onAfterEventsLoad: function(events) {
 			if(!events) {
 				return;
@@ -25,6 +26,7 @@
 			$('.page-header h3').text(this.getTitle());
 			$('.btn-group button').removeClass('active');
 			$('button[data-calendar-view="' + view + '"]').addClass('active');
+			$('button[data-calendar-type="' + this.options.type + '"]').addClass('active');
 		},
 		classes: {
 			months: {
@@ -46,6 +48,13 @@
 		var $this = $(this);
 		$this.click(function() {
 			calendar.view($this.data('calendar-view'));
+		});
+	});
+
+	$('.btn-group button[data-calendar-type]').each(function() {
+		var $this = $(this);
+		$this.click(function() {
+			calendar.setType($this.data('calendar-type'));
 		});
 	});
 
